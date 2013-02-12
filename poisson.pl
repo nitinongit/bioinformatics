@@ -4,7 +4,7 @@
 # parameters: [coverage] [y]
 use strict; use warnings;
 
-die "usage: poisson.pl <C, y>\n" unless @ARGV == 1; #check if 
+die "usage: poisson.pl <C, y>\n" unless @ARGV == 2; #check if parameters passed 
 
 my ($c, $y) = @ARGV; #c = coverage, y = # times specific base has been sequenced
 
