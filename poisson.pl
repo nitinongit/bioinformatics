@@ -1,23 +1,25 @@
 #!/usr/bin/perl
 # poisson.pl by Pete Swetits
-# calculates the probability of k, p(k), given k and lambda
-# parameters: [lambda] [k]
+# calculates the probability that a specific base was sequenced correctly
+# parameters: [coverage] [y]
 use strict; use warnings;
 
-my ($l, $k) = @ARGV;
+die "usage: poisson.pl <C, y>\n" unless @ARGV == 1; #check if 
 
-#find k! using stirling's approximation
-my $k_factorial = 
+my ($c, $y) = @ARGV; #c = coverage, y = # times specific base has been sequenced
+
+#find y! using stirling's approximation
+my $y_factorial = 
 	2.71828 **
 	((0.5 * log(2 * 3.14159265358979)) 
-	+ ($k + 0.5) * log($k) 
-	- $k + 1 / (12 * $k) 
-	- 1 / (360 * ($k ** 3))); 
+	+ ($y + 0.5) * log($y) 
+	- $y + 1 / (12 * $y) 
+	- 1 / (360 * ($y ** 3))); 
 
-$k_factorial = int($k_factorial + 0.5);
+$y_factorial = int($y_factorial + 0.5);
 
-#find probability of k
+#find probability of y
 my $e = 2.71828; #Euler's number
-my $p_k = ($l ** $k) / ($k_factorial * ($e ** $l));
+my $p_y = ($c ** $y) / ($y_factorial * ($e ** $c));
 
-print "The probability of k is ", $p_k, ".\n";
+print "Probability = ", $p_y, "\n";
